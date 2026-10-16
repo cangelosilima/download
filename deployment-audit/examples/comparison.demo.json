@@ -1,0 +1,513 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAtUtc": "2026-10-16T22:59:36.4016153Z",
+  "left": {
+    "computer": "dev-app01-DEMO",
+    "environment": "DEV",
+    "capturedAtUtc": "2026-10-16T19:58:46.660445-03:00"
+  },
+  "right": {
+    "computer": "ot-app01-DEMO",
+    "environment": "OT",
+    "capturedAtUtc": "2026-10-16T19:58:46.660445-03:00"
+  },
+  "summary": {
+    "Drift": 6,
+    "Fail": 4,
+    "Inconclusive": 1,
+    "Accepted": 2,
+    "Equal": 20,
+    "Pass": 20,
+    "Ignored": 0,
+    "Informational": 1
+  },
+  "exitCode": 2,
+  "rows": [
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "orders-api",
+      "path": "Present",
+      "left": "DEV",
+      "right": true,
+      "reason": "Required item found"
+    },
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "orders-api",
+      "path": "IIS/PoolState",
+      "left": "DEV",
+      "right": "Started",
+      "reason": "Expected Equals: \"Started\""
+    },
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "orders-api",
+      "path": "Health/Success",
+      "left": "DEV",
+      "right": true,
+      "reason": "Expected Equals: true"
+    },
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "pricing-worker",
+      "path": "Present",
+      "left": "DEV",
+      "right": true,
+      "reason": "Required item found"
+    },
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "pricing-worker",
+      "path": "Service/State",
+      "left": "DEV",
+      "right": "Running",
+      "reason": "Expected Equals: \"Running\""
+    },
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "orders-queue",
+      "path": "Present",
+      "left": "DEV",
+      "right": true,
+      "reason": "Required item found"
+    },
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "orders-queue",
+      "path": "Queue/Transactional",
+      "left": "DEV",
+      "right": true,
+      "reason": "Expected Equals: true"
+    },
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "closing-task",
+      "path": "Present",
+      "left": "DEV",
+      "right": true,
+      "reason": "Required item found"
+    },
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "closing-task",
+      "path": "Task/Enabled",
+      "left": "DEV",
+      "right": true,
+      "reason": "Expected Equals: true"
+    },
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "api-certificate",
+      "path": "Present",
+      "left": "DEV",
+      "right": true,
+      "reason": "Required item found"
+    },
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "api-certificate",
+      "path": "Certificate/DaysRemaining",
+      "left": "DEV",
+      "right": 91,
+      "reason": "Expected Min: 30"
+    },
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "_platform",
+      "path": "Features/Web-WebSockets",
+      "left": "DEV",
+      "right": "Installed",
+      "reason": "Expected Equals: \"Installed\""
+    },
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "orders-api",
+      "path": "Present",
+      "left": "OT",
+      "right": true,
+      "reason": "Required item found"
+    },
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "orders-api",
+      "path": "IIS/PoolState",
+      "left": "OT",
+      "right": "Started",
+      "reason": "Expected Equals: \"Started\""
+    },
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "orders-api",
+      "path": "Health/Success",
+      "left": "OT",
+      "right": true,
+      "reason": "Expected Equals: true"
+    },
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "pricing-worker",
+      "path": "Present",
+      "left": "OT",
+      "right": true,
+      "reason": "Required item found"
+    },
+    {
+      "category": "Validation",
+      "status": "Fail",
+      "item": "pricing-worker",
+      "path": "Service/State",
+      "left": "OT",
+      "right": "Stopped",
+      "reason": "Expected Equals: \"Running\""
+    },
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "orders-queue",
+      "path": "Present",
+      "left": "OT",
+      "right": true,
+      "reason": "Required item found"
+    },
+    {
+      "category": "Validation",
+      "status": "Fail",
+      "item": "orders-queue",
+      "path": "Queue/Transactional",
+      "left": "OT",
+      "right": false,
+      "reason": "Expected Equals: true"
+    },
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "closing-task",
+      "path": "Present",
+      "left": "OT",
+      "right": true,
+      "reason": "Required item found"
+    },
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "closing-task",
+      "path": "Task/Enabled",
+      "left": "OT",
+      "right": true,
+      "reason": "Expected Equals: true"
+    },
+    {
+      "category": "Validation",
+      "status": "Pass",
+      "item": "api-certificate",
+      "path": "Present",
+      "left": "OT",
+      "right": true,
+      "reason": "Required item found"
+    },
+    {
+      "category": "Validation",
+      "status": "Fail",
+      "item": "api-certificate",
+      "path": "Certificate/DaysRemaining",
+      "left": "OT",
+      "right": 12,
+      "reason": "Expected Min: 30"
+    },
+    {
+      "category": "Validation",
+      "status": "Fail",
+      "item": "_platform",
+      "path": "Features/Web-WebSockets",
+      "left": "OT",
+      "right": "Available",
+      "reason": "Expected Equals: \"Installed\""
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "_platform",
+      "path": "DotNet/x64/Runtimes/Microsoft.NETCore.App/8.0.20",
+      "left": true,
+      "right": true,
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Drift",
+      "item": "_platform",
+      "path": "Features/Web-WebSockets",
+      "left": "Installed",
+      "right": "Available",
+      "reason": "Values differ after scoped mappings"
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "_platform",
+      "path": "Framework/Registry64/v4~1Full/Release",
+      "left": 528049,
+      "right": 528049,
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Informational",
+      "item": "api-certificate",
+      "path": "Certificate/DaysRemaining",
+      "left": 91,
+      "right": 12,
+      "reason": "Runtime metric; validate explicitly if required"
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "api-certificate",
+      "path": "Certificate/HasPrivateKey",
+      "left": true,
+      "right": true,
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "api-certificate",
+      "path": "Certificate/ValidNow",
+      "left": true,
+      "right": true,
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "api-certificate",
+      "path": "Present",
+      "left": true,
+      "right": true,
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "closing-task",
+      "path": "Present",
+      "left": true,
+      "right": true,
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "closing-task",
+      "path": "Task/Definition/TimeZone",
+      "left": "E. South America Standard Time",
+      "right": "E. South America Standard Time",
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "closing-task",
+      "path": "Task/Enabled",
+      "left": true,
+      "right": true,
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "closing-task",
+      "path": "Task/Principal/UserId",
+      "left": "CORP\\svc-closing",
+      "right": "CORP\\svc-closing",
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "orders-api",
+      "path": "Binary/Orders.Api.dll/FileVersion",
+      "left": "2.8.0.0",
+      "right": "2.8.0.0",
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Inconclusive",
+      "item": "orders-api",
+      "path": "Config/appsettings.json/Database/Password",
+      "left": "[PROTECTED]",
+      "right": "[PROTECTED]",
+      "reason": "Secret redacted; equality cannot be asserted"
+    },
+    {
+      "category": "Comparison",
+      "status": "Accepted",
+      "item": "orders-api",
+      "path": "Config/appsettings.json/Endpoints/Pricing",
+      "left": "https://pricing-dev.internal",
+      "right": "https://pricing-ot.internal",
+      "reason": "Endpoint aprovado por ambiente"
+    },
+    {
+      "category": "Comparison",
+      "status": "Drift",
+      "item": "orders-api",
+      "path": "Config/appsettings.json/Features/EnableSettlement",
+      "left": true,
+      "right": false,
+      "reason": "Values differ after scoped mappings"
+    },
+    {
+      "category": "Comparison",
+      "status": "Drift",
+      "item": "orders-api",
+      "path": "Config/appsettings.json/Retry/MaxAttempts",
+      "left": 3,
+      "right": 5,
+      "reason": "Values differ after scoped mappings"
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "orders-api",
+      "path": "Deployment/Acl/Rules",
+      "left": "CORP\\ops|Allow|ReadAndExecute",
+      "right": "CORP\\ops|Allow|ReadAndExecute",
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "orders-api",
+      "path": "Health/Success",
+      "left": true,
+      "right": true,
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Accepted",
+      "item": "orders-api",
+      "path": "IIS/Identity",
+      "left": "CORP\\svc-trading-dev",
+      "right": "CORP\\svc-trading-ot",
+      "reason": "Conta de execução correspondente"
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "orders-api",
+      "path": "IIS/PoolState",
+      "left": "Started",
+      "right": "Started",
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "orders-api",
+      "path": "Present",
+      "left": true,
+      "right": true,
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "orders-queue",
+      "path": "Present",
+      "left": true,
+      "right": true,
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "orders-queue",
+      "path": "Queue/ServiceState",
+      "left": "Running",
+      "right": "Running",
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Drift",
+      "item": "orders-queue",
+      "path": "Queue/Transactional",
+      "left": true,
+      "right": false,
+      "reason": "Values differ after scoped mappings"
+    },
+    {
+      "category": "Comparison",
+      "status": "Drift",
+      "item": "pricing-worker",
+      "path": "Binary/Pricing.Worker.exe/FileVersion",
+      "left": "2.0.0.0",
+      "right": "1.9.0.0",
+      "reason": "Values differ after scoped mappings"
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "pricing-worker",
+      "path": "Config/Pricing.Worker.exe.config/configuration/appSettings(1)/add(key=BatchSize)/@value",
+      "left": "500",
+      "right": "500",
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "pricing-worker",
+      "path": "Present",
+      "left": true,
+      "right": true,
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "pricing-worker",
+      "path": "Service/StartMode",
+      "left": "Auto",
+      "right": "Auto",
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Equal",
+      "item": "pricing-worker",
+      "path": "Service/StartName",
+      "left": "CORP\\svc-pricing",
+      "right": "CORP\\svc-pricing",
+      "reason": "Equal values"
+    },
+    {
+      "category": "Comparison",
+      "status": "Drift",
+      "item": "pricing-worker",
+      "path": "Service/State",
+      "left": "Running",
+      "right": "Stopped",
+      "reason": "Values differ after scoped mappings"
+    }
+  ]
+}

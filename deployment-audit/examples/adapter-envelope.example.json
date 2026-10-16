@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0",
+  "capturedAtUtc": "2026-10-16T20:00:00Z",
+  "complete": true,
+  "fields": {
+    "scheduler": {
+      "started": true,
+      "standby": false
+    },
+    "jobs": {
+      "Eod": {
+        "enabled": true,
+        "cron": "0 0 20 ? * MON-FRI",
+        "timeZone": "E. South America Standard Time",
+        "misfirePolicy": "DoNothing",
+        "running": false
+      }
+    },
+    "queues": {
+      "orders": {
+        "durable": true,
+        "consumers": 2,
+        "permissions": {
+          "producer": "write",
+          "consumer": "read"
+        }
+      }
+    }
+  }
+}

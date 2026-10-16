@@ -1,0 +1,11 @@
+Validation performed during delivery
+- Original shared delivery: PowerShell 7.4.13, Linux, 26 assertions passed.
+- Publication validation: all 26 comparison/parser assertions and 2 mocked adapter credential checks passed on Windows PowerShell 5.1 and PowerShell 7 on Windows.
+- End-to-end comparison CLI generated examples/relatorio-demo.html and comparison.demo.json.
+- Demo outcome: 6 Drift, 4 Fail, 1 Inconclusive, 2 Accepted; expected CLI exit code 2.
+- HTML structure, embedded JSON and filter/search/render logic checked with Node DOM stub.
+- No real browser visual verification completed (browser runtime unavailable).
+- HTTP adapter credential tests mock HTTP; no external adapter or corporate endpoint was accessed.
+- Native IIS, SCM, ScheduledTasks, MSMQ, registry, ACL and certificate collection must be smoke-tested on a Windows DEV server.
+- No user server was accessed or modified during creation.
+- Browser control failed to initialize in this environment; visual browser QA remains unverified.

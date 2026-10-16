@@ -1,0 +1,643 @@
+{
+  "schemaVersion": "1.0",
+  "environments": [
+    "DEV",
+    "OT",
+    "PRD"
+  ],
+  "collection": {
+    "windowsFeatures": true,
+    "software": true,
+    "frameworks": true,
+    "userRights": true,
+    "localGroups": [
+      "IIS_IUSRS"
+    ],
+    "machineEnvironmentVariables": [
+      "ASPNETCORE_ENVIRONMENT",
+      "DOTNET_ENVIRONMENT"
+    ],
+    "maxConfigBytes": 2097152
+  },
+  "security": {
+    "sensitivePathRegex": [
+      "(?i)SigningKey",
+      "(?i)SharedAccessKey",
+      "(?i)ClientSecret"
+    ]
+  },
+  "items": [
+    {
+      "id": "orders-api",
+      "type": "IIS",
+      "site": "Trading",
+      "applicationPath": "/Orders",
+      "binaryFiles": [
+        "Orders.Api.dll"
+      ],
+      "environments": {
+        "DEV": {
+          "site": "Trading-DEV",
+          "health": {
+            "url": "https://orders-dev.example.internal/health",
+            "expectedStatusCodes": [
+              200
+            ],
+            "useDefaultCredentials": true
+          },
+          "expected": [
+            {
+              "path": "IIS/SiteState",
+              "operator": "Equals",
+              "value": "Started"
+            },
+            {
+              "path": "IIS/PoolState",
+              "operator": "Equals",
+              "value": "Started"
+            },
+            {
+              "path": "IIS/Identity",
+              "operator": "Equals",
+              "value": "CORP\\svc-trading-dev"
+            },
+            {
+              "path": "Health/Url",
+              "operator": "Equals",
+              "value": "https://orders-dev.example.internal/health"
+            },
+            {
+              "path": "Config/appsettings.json/Endpoints/Pricing",
+              "operator": "Equals",
+              "value": "https://pricing-dev.example.internal"
+            },
+            {
+              "path": "IIS/Bindings/https/0/Thumbprint",
+              "operator": "Equals",
+              "value": "1111111111111111111111111111111111111111"
+            }
+          ]
+        },
+        "OT": {
+          "site": "Trading-OT",
+          "health": {
+            "url": "https://orders-ot.example.internal/health",
+            "expectedStatusCodes": [
+              200
+            ],
+            "useDefaultCredentials": true
+          },
+          "expected": [
+            {
+              "path": "IIS/SiteState",
+              "operator": "Equals",
+              "value": "Started"
+            },
+            {
+              "path": "IIS/PoolState",
+              "operator": "Equals",
+              "value": "Started"
+            },
+            {
+              "path": "IIS/Identity",
+              "operator": "Equals",
+              "value": "CORP\\svc-trading-ot"
+            },
+            {
+              "path": "Health/Url",
+              "operator": "Equals",
+              "value": "https://orders-ot.example.internal/health"
+            },
+            {
+              "path": "Config/appsettings.json/Endpoints/Pricing",
+              "operator": "Equals",
+              "value": "https://pricing-ot.example.internal"
+            },
+            {
+              "path": "IIS/Bindings/https/0/Thumbprint",
+              "operator": "Equals",
+              "value": "2222222222222222222222222222222222222222"
+            }
+          ]
+        },
+        "PRD": {
+          "site": "Trading-PRD",
+          "health": {
+            "url": "https://orders-prd.example.internal/health",
+            "expectedStatusCodes": [
+              200
+            ],
+            "useDefaultCredentials": true
+          },
+          "expected": [
+            {
+              "path": "IIS/SiteState",
+              "operator": "Equals",
+              "value": "Started"
+            },
+            {
+              "path": "IIS/PoolState",
+              "operator": "Equals",
+              "value": "Started"
+            },
+            {
+              "path": "IIS/Identity",
+              "operator": "Equals",
+              "value": "CORP\\svc-trading-prd"
+            },
+            {
+              "path": "Health/Url",
+              "operator": "Equals",
+              "value": "https://orders-prd.example.internal/health"
+            },
+            {
+              "path": "Config/appsettings.json/Endpoints/Pricing",
+              "operator": "Equals",
+              "value": "https://pricing-prd.example.internal"
+            },
+            {
+              "path": "IIS/Bindings/https/0/Thumbprint",
+              "operator": "Equals",
+              "value": "3333333333333333333333333333333333333333"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pricing-worker",
+      "type": "Service",
+      "binaryFiles": [
+        "Pricing.Worker.exe"
+      ],
+      "environments": {
+        "DEV": {
+          "name": "Pricing.Worker.DEV",
+          "expected": [
+            {
+              "path": "Service/State",
+              "operator": "Equals",
+              "value": "Running"
+            },
+            {
+              "path": "Service/StartMode",
+              "operator": "Equals",
+              "value": "Auto"
+            },
+            {
+              "path": "Service/StartName",
+              "operator": "Equals",
+              "value": "CORP\\svc-trading-dev"
+            }
+          ]
+        },
+        "OT": {
+          "name": "Pricing.Worker.OT",
+          "expected": [
+            {
+              "path": "Service/State",
+              "operator": "Equals",
+              "value": "Running"
+            },
+            {
+              "path": "Service/StartMode",
+              "operator": "Equals",
+              "value": "Auto"
+            },
+            {
+              "path": "Service/StartName",
+              "operator": "Equals",
+              "value": "CORP\\svc-trading-ot"
+            }
+          ]
+        },
+        "PRD": {
+          "name": "Pricing.Worker.PRD",
+          "expected": [
+            {
+              "path": "Service/State",
+              "operator": "Equals",
+              "value": "Running"
+            },
+            {
+              "path": "Service/StartMode",
+              "operator": "Equals",
+              "value": "Auto"
+            },
+            {
+              "path": "Service/StartName",
+              "operator": "Equals",
+              "value": "CORP\\svc-trading-prd"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "closing-task",
+      "type": "Task",
+      "taskPath": "\\Trading\\",
+      "collectConfig": true,
+      "environments": {
+        "DEV": {
+          "name": "Closing-DEV",
+          "applicationRoot": "D:\\Apps\\DEV\\Closing",
+          "expected": [
+            {
+              "path": "Task/Enabled",
+              "operator": "Equals",
+              "value": true
+            },
+            {
+              "path": "Task/Principal/UserId",
+              "operator": "Equals",
+              "value": "CORP\\svc-trading-dev"
+            },
+            {
+              "path": "Task/Runtime/LastTaskResult",
+              "operator": "Equals",
+              "value": 0
+            }
+          ]
+        },
+        "OT": {
+          "name": "Closing-OT",
+          "applicationRoot": "D:\\Apps\\OT\\Closing",
+          "expected": [
+            {
+              "path": "Task/Enabled",
+              "operator": "Equals",
+              "value": true
+            },
+            {
+              "path": "Task/Principal/UserId",
+              "operator": "Equals",
+              "value": "CORP\\svc-trading-ot"
+            },
+            {
+              "path": "Task/Runtime/LastTaskResult",
+              "operator": "Equals",
+              "value": 0
+            }
+          ]
+        },
+        "PRD": {
+          "name": "Closing-PRD",
+          "applicationRoot": "D:\\Apps\\PRD\\Closing",
+          "expected": [
+            {
+              "path": "Task/Enabled",
+              "operator": "Equals",
+              "value": true
+            },
+            {
+              "path": "Task/Principal/UserId",
+              "operator": "Equals",
+              "value": "CORP\\svc-trading-prd"
+            },
+            {
+              "path": "Task/Runtime/LastTaskResult",
+              "operator": "Equals",
+              "value": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "orders-queue",
+      "type": "MSMQ",
+      "queueType": "Private",
+      "environments": {
+        "DEV": {
+          "name": "private$\\orders-dev",
+          "expected": [
+            {
+              "path": "Queue/ServiceState",
+              "operator": "Equals",
+              "value": "Running"
+            },
+            {
+              "path": "Queue/Transactional",
+              "operator": "Equals",
+              "value": true
+            }
+          ]
+        },
+        "OT": {
+          "name": "private$\\orders-ot",
+          "expected": [
+            {
+              "path": "Queue/ServiceState",
+              "operator": "Equals",
+              "value": "Running"
+            },
+            {
+              "path": "Queue/Transactional",
+              "operator": "Equals",
+              "value": true
+            }
+          ]
+        },
+        "PRD": {
+          "name": "private$\\orders-prd",
+          "expected": [
+            {
+              "path": "Queue/ServiceState",
+              "operator": "Equals",
+              "value": "Running"
+            },
+            {
+              "path": "Queue/Transactional",
+              "operator": "Equals",
+              "value": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "api-certificate",
+      "type": "Certificate",
+      "store": "My",
+      "environments": {
+        "DEV": {
+          "thumbprint": "1111111111111111111111111111111111111111",
+          "expected": [
+            {
+              "path": "Certificate/HasPrivateKey",
+              "operator": "Equals",
+              "value": true
+            },
+            {
+              "path": "Certificate/ValidNow",
+              "operator": "Equals",
+              "value": true
+            },
+            {
+              "path": "Certificate/DaysRemaining",
+              "operator": "Min",
+              "value": 30
+            }
+          ]
+        },
+        "OT": {
+          "thumbprint": "2222222222222222222222222222222222222222",
+          "expected": [
+            {
+              "path": "Certificate/HasPrivateKey",
+              "operator": "Equals",
+              "value": true
+            },
+            {
+              "path": "Certificate/ValidNow",
+              "operator": "Equals",
+              "value": true
+            },
+            {
+              "path": "Certificate/DaysRemaining",
+              "operator": "Min",
+              "value": 30
+            }
+          ]
+        },
+        "PRD": {
+          "thumbprint": "3333333333333333333333333333333333333333",
+          "expected": [
+            {
+              "path": "Certificate/HasPrivateKey",
+              "operator": "Equals",
+              "value": true
+            },
+            {
+              "path": "Certificate/ValidNow",
+              "operator": "Equals",
+              "value": true
+            },
+            {
+              "path": "Certificate/DaysRemaining",
+              "operator": "Min",
+              "value": 30
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "shared-output",
+      "type": "Directory",
+      "environments": {
+        "DEV": {
+          "path": "D:\\Data\\DEV\\Output",
+          "expected": [
+            {
+              "path": "Directory/Acl/Rules",
+              "operator": "Contains",
+              "value": "CORP\\svc-trading-dev|Allow|Modify"
+            }
+          ]
+        },
+        "OT": {
+          "path": "D:\\Data\\OT\\Output",
+          "expected": [
+            {
+              "path": "Directory/Acl/Rules",
+              "operator": "Contains",
+              "value": "CORP\\svc-trading-ot|Allow|Modify"
+            }
+          ]
+        },
+        "PRD": {
+          "path": "D:\\Data\\PRD\\Output",
+          "expected": [
+            {
+              "path": "Directory/Acl/Rules",
+              "operator": "Contains",
+              "value": "CORP\\svc-trading-prd|Allow|Modify"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "quartz-business-jobs",
+      "type": "JsonFile",
+      "enabled": false,
+      "path": "D:\\AuditAdapters\\quartz.json",
+      "maxAgeMinutes": 15,
+      "expected": [
+        {
+          "path": "Adapter/Fresh",
+          "operator": "Equals",
+          "value": true
+        },
+        {
+          "path": "Adapter/Complete",
+          "operator": "Equals",
+          "value": true
+        },
+        {
+          "path": "Adapter/Fields/scheduler/started",
+          "operator": "Equals",
+          "value": true
+        },
+        {
+          "path": "Adapter/Fields/jobs/Eod/enabled",
+          "operator": "Equals",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "rabbitmq-topology",
+      "type": "HttpJson",
+      "enabled": false,
+      "url": "https://mq-audit.example.internal/audit/snapshot",
+      "bearerTokenEnvironmentVariable": "MQ_AUDIT_TOKEN",
+      "maxAgeMinutes": 5,
+      "expected": [
+        {
+          "path": "Adapter/Fields/queues/orders/durable",
+          "operator": "Equals",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "platformExpected": [
+    {
+      "path": "Features/Web-Server",
+      "operator": "Equals",
+      "value": "Installed"
+    },
+    {
+      "path": "Framework/Registry64/v4~1Full/Release",
+      "operator": "Min",
+      "value": 528040
+    },
+    {
+      "path": "DotNet/x64/Runtimes/Microsoft.NETCore.App/8.*",
+      "operator": "Exists"
+    },
+    {
+      "path": "DotNet/x64/Runtimes/Microsoft.AspNetCore.App/8.*",
+      "operator": "Exists"
+    },
+    {
+      "path": "IIS/ANCM/x64/FileVersion",
+      "operator": "Exists"
+    }
+  ],
+  "comparison": {
+    "mappings": [
+      {
+        "item": "*",
+        "path": "*",
+        "canonical": "<TRADING_ACCOUNT>",
+        "values": {
+          "DEV": "CORP\\svc-trading-dev",
+          "OT": "CORP\\svc-trading-ot",
+          "PRD": "CORP\\svc-trading-prd"
+        },
+        "reason": "Conta de execução equivalente por ambiente",
+        "mode": "LiteralReplace"
+      },
+      {
+        "item": "orders-api",
+        "path": "IIS/Site",
+        "canonical": "<TRADING_SITE>",
+        "values": {
+          "DEV": "Trading-DEV",
+          "OT": "Trading-OT",
+          "PRD": "Trading-PRD"
+        },
+        "reason": "Sites equivalentes",
+        "mode": "Exact"
+      },
+      {
+        "item": "pricing-worker",
+        "path": "Service/Name",
+        "canonical": "<PRICING_SERVICE>",
+        "values": {
+          "DEV": "Pricing.Worker.DEV",
+          "OT": "Pricing.Worker.OT",
+          "PRD": "Pricing.Worker.PRD"
+        },
+        "reason": "Nome do serviço por ambiente",
+        "mode": "Exact"
+      },
+      {
+        "item": "*",
+        "path": "Deployment/Root",
+        "canonical": "<APPS_ROOT>\\",
+        "values": {
+          "DEV": "D:\\Apps\\DEV\\",
+          "OT": "D:\\Apps\\OT\\",
+          "PRD": "D:\\Apps\\PRD\\"
+        },
+        "reason": "Raiz de instalação por ambiente",
+        "mode": "LiteralReplace"
+      },
+      {
+        "item": "orders-api",
+        "path": "Config/appsettings.json/Endpoints/Pricing",
+        "canonical": "<PRICING_URL>",
+        "values": {
+          "DEV": "https://pricing-dev.example.internal",
+          "OT": "https://pricing-ot.example.internal",
+          "PRD": "https://pricing-prd.example.internal"
+        },
+        "reason": "Endpoint do pricing",
+        "mode": "Exact"
+      },
+      {
+        "item": "orders-api",
+        "path": "Health/Url",
+        "canonical": "<ORDERS_HEALTH>",
+        "values": {
+          "DEV": "https://orders-dev.example.internal/health",
+          "OT": "https://orders-ot.example.internal/health",
+          "PRD": "https://orders-prd.example.internal/health"
+        },
+        "reason": "Endpoint do health check",
+        "mode": "Exact"
+      },
+      {
+        "item": "orders-api",
+        "path": "IIS/Bindings/https/0/Thumbprint",
+        "canonical": "<API_CERT>",
+        "values": {
+          "DEV": "1111111111111111111111111111111111111111",
+          "OT": "2222222222222222222222222222222222222222",
+          "PRD": "3333333333333333333333333333333333333333"
+        },
+        "reason": "Certificado de binding aprovado",
+        "mode": "Exact"
+      },
+      {
+        "item": "api-certificate",
+        "path": "Certificate/Thumbprint",
+        "canonical": "<API_CERT>",
+        "values": {
+          "DEV": "1111111111111111111111111111111111111111",
+          "OT": "2222222222222222222222222222222222222222",
+          "PRD": "3333333333333333333333333333333333333333"
+        },
+        "reason": "Certificado esperado por ambiente",
+        "mode": "Exact"
+      }
+    ],
+    "ignore": [
+      {
+        "item": "api-certificate",
+        "path": "Certificate/NotBefore",
+        "reason": "Datas de emissão podem diferir; ValidNow é validado separadamente"
+      },
+      {
+        "item": "api-certificate",
+        "path": "Certificate/NotAfter",
+        "reason": "Datas de expiração podem diferir; DaysRemaining deve ser pelo menos 30"
+      }
+    ]
+  }
+}
