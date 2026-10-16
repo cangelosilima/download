@@ -7,22 +7,40 @@ on:
 permissions:
   contents: read
 jobs:
-  windows-tests:
+  powershell-51:
     runs-on: windows-latest
-    strategy:
-      matrix:
-        shell: [powershell, pwsh]
+    defaults:
+      run:
+        shell: powershell
     steps:
       - uses: actions/checkout@v4
         with:
           lfs: false
       - name: Test comparison, parsers and adapter credentials
-        shell: ${{ matrix.shell }}
         run: |
           & ./deployment-audit/tests/Test-DeploymentAudit.ps1
           & ./deployment-audit/tests/Test-AdapterCredentials.ps1
       - name: Generate synthetic comparison report
-        shell: ${{ matrix.shell }}
+        run: |
+          & ./deployment-audit/Compare-DeploymentSnapshots.ps1 -Manifest ./deployment-audit/examples/manifest.demo.json -Left ./deployment-audit/examples/dev.snapshot.json -Right ./deployment-audit/examples/ot.snapshot.json -OutputHtml "$env:RUNNER_TEMP/demo.html" -OutputJson "$env:RUNNER_TEMP/demo.json"
+          if ($LASTEXITCODE -ne 2) { throw "Expected demonstration drift exit code 2; got $LASTEXITCODE" }
+          exit 0
+      - name: Check report rendering logic and filters
+        run: node ./deployment-audit/tests/Test-Report.cjs
+  powershell-7:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - name: Test comparison, parsers and adapter credentials
+        run: |
+          & ./deployment-audit/tests/Test-DeploymentAudit.ps1
+          & ./deployment-audit/tests/Test-AdapterCredentials.ps1
+      - name: Generate synthetic comparison report
         run: |
           & ./deployment-audit/Compare-DeploymentSnapshots.ps1 -Manifest ./deployment-audit/examples/manifest.demo.json -Left ./deployment-audit/examples/dev.snapshot.json -Right ./deployment-audit/examples/ot.snapshot.json -OutputHtml "$env:RUNNER_TEMP/demo.html" -OutputJson "$env:RUNNER_TEMP/demo.json"
           if ($LASTEXITCODE -ne 2) { throw "Expected demonstration drift exit code 2; got $LASTEXITCODE" }
