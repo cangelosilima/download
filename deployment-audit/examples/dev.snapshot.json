@@ -1,0 +1,269 @@
+{
+  "schemaVersion": "1.0",
+  "toolVersion": "1.0.0",
+  "capturedAtUtc": "2026-10-16T22:58:46.660445+00:00",
+  "environment": "DEV",
+  "computerName": "dev-app01-DEMO",
+  "manifestHash": "c96113cee93ab5c1ee60716ff2d386328220cb9b232b066f59b3dafe6b9b366d",
+  "hmacKeyId": null,
+  "records": [
+    {
+      "id": "orders-api",
+      "type": "IIS",
+      "status": "Collected",
+      "fields": [
+        {
+          "path": "Present",
+          "value": true,
+          "valueType": "Boolean",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "IIS/PoolState",
+          "value": "Started",
+          "valueType": "String",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "IIS/Identity",
+          "value": "CORP\\svc-trading-dev",
+          "valueType": "String",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "Health/Success",
+          "value": true,
+          "valueType": "Boolean",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "Config/appsettings.json/Endpoints/Pricing",
+          "value": "https://pricing-dev.internal",
+          "valueType": "String",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "Config/appsettings.json/Retry/MaxAttempts",
+          "value": 3,
+          "valueType": "Number",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "Config/appsettings.json/Features/EnableSettlement",
+          "value": true,
+          "valueType": "Boolean",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "Config/appsettings.json/Database/Password",
+          "value": "[REDACTED]",
+          "valueType": "String",
+          "protection": "Redacted",
+          "volatile": false
+        },
+        {
+          "path": "Binary/Orders.Api.dll/FileVersion",
+          "value": "2.8.0.0",
+          "valueType": "String",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "Deployment/Acl/Rules",
+          "value": "CORP\\ops|Allow|ReadAndExecute",
+          "valueType": "String",
+          "protection": "None",
+          "volatile": false
+        }
+      ],
+      "issues": []
+    },
+    {
+      "id": "pricing-worker",
+      "type": "Service",
+      "status": "Collected",
+      "fields": [
+        {
+          "path": "Present",
+          "value": true,
+          "valueType": "Boolean",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "Service/State",
+          "value": "Running",
+          "valueType": "String",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "Service/StartMode",
+          "value": "Auto",
+          "valueType": "String",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "Service/StartName",
+          "value": "CORP\\svc-pricing",
+          "valueType": "String",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "Config/Pricing.Worker.exe.config/configuration/appSettings(1)/add(key=BatchSize)/@value",
+          "value": "500",
+          "valueType": "String",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "Binary/Pricing.Worker.exe/FileVersion",
+          "value": "2.0.0.0",
+          "valueType": "String",
+          "protection": "None",
+          "volatile": false
+        }
+      ],
+      "issues": []
+    },
+    {
+      "id": "orders-queue",
+      "type": "MSMQ",
+      "status": "Collected",
+      "fields": [
+        {
+          "path": "Present",
+          "value": true,
+          "valueType": "Boolean",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "Queue/Transactional",
+          "value": true,
+          "valueType": "Boolean",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "Queue/ServiceState",
+          "value": "Running",
+          "valueType": "String",
+          "protection": "None",
+          "volatile": false
+        }
+      ],
+      "issues": []
+    },
+    {
+      "id": "closing-task",
+      "type": "Task",
+      "status": "Collected",
+      "fields": [
+        {
+          "path": "Present",
+          "value": true,
+          "valueType": "Boolean",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "Task/Enabled",
+          "value": true,
+          "valueType": "Boolean",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "Task/Principal/UserId",
+          "value": "CORP\\svc-closing",
+          "valueType": "String",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "Task/Definition/TimeZone",
+          "value": "E. South America Standard Time",
+          "valueType": "String",
+          "protection": "None",
+          "volatile": false
+        }
+      ],
+      "issues": []
+    },
+    {
+      "id": "api-certificate",
+      "type": "Certificate",
+      "status": "Collected",
+      "fields": [
+        {
+          "path": "Present",
+          "value": true,
+          "valueType": "Boolean",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "Certificate/DaysRemaining",
+          "value": 91,
+          "valueType": "Number",
+          "protection": "None",
+          "volatile": true
+        },
+        {
+          "path": "Certificate/HasPrivateKey",
+          "value": true,
+          "valueType": "Boolean",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "Certificate/ValidNow",
+          "value": true,
+          "valueType": "Boolean",
+          "protection": "None",
+          "volatile": false
+        }
+      ],
+      "issues": []
+    },
+    {
+      "id": "_platform",
+      "type": "Platform",
+      "status": "Collected",
+      "fields": [
+        {
+          "path": "Features/Web-WebSockets",
+          "value": "Installed",
+          "valueType": "String",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "Framework/Registry64/v4~1Full/Release",
+          "value": 528049,
+          "valueType": "Number",
+          "protection": "None",
+          "volatile": false
+        },
+        {
+          "path": "DotNet/x64/Runtimes/Microsoft.NETCore.App/8.0.20",
+          "value": true,
+          "valueType": "Boolean",
+          "protection": "None",
+          "volatile": false
+        }
+      ],
+      "issues": []
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "1.0",
+  "environments": [
+    "DEV",
+    "OT"
+  ],
+  "collection": {},
+  "security": {},
+  "items": [
+    {
+      "id": "orders-api",
+      "type": "IIS",
+      "expected": [
+        {
+          "path": "IIS/PoolState",
+          "operator": "Equals",
+          "value": "Started"
+        },
+        {
+          "path": "Health/Success",
+          "operator": "Equals",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "pricing-worker",
+      "type": "Service",
+      "expected": [
+        {
+          "path": "Service/State",
+          "operator": "Equals",
+          "value": "Running"
+        }
+      ]
+    },
+    {
+      "id": "orders-queue",
+      "type": "MSMQ",
+      "expected": [
+        {
+          "path": "Queue/Transactional",
+          "operator": "Equals",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "closing-task",
+      "type": "Task",
+      "expected": [
+        {
+          "path": "Task/Enabled",
+          "operator": "Equals",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "api-certificate",
+      "type": "Certificate",
+      "expected": [
+        {
+          "path": "Certificate/DaysRemaining",
+          "operator": "Min",
+          "value": 30
+        }
+      ]
+    }
+  ],
+  "platformExpected": [
+    {
+      "path": "Features/Web-WebSockets",
+      "operator": "Equals",
+      "value": "Installed"
+    }
+  ],
+  "comparison": {
+    "maxSnapshotAgeHours": 876000,
+    "mappings": [
+      {
+        "item": "orders-api",
+        "path": "Config/appsettings.json/Endpoints/Pricing",
+        "mode": "Exact",
+        "canonical": "<PRICING>",
+        "values": {
+          "DEV": "https://pricing-dev.internal",
+          "OT": "https://pricing-ot.internal"
+        },
+        "reason": "Endpoint aprovado por ambiente"
+      },
+      {
+        "item": "*",
+        "path": "*/Identity",
+        "mode": "Exact",
+        "canonical": "<SERVICE_ACCOUNT>",
+        "values": {
+          "DEV": "CORP\\svc-trading-dev",
+          "OT": "CORP\\svc-trading-ot"
+        },
+        "reason": "Conta de execução correspondente"
+      }
+    ],
+    "ignore": []
+  }
+}
